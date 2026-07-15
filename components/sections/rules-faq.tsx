@@ -63,9 +63,10 @@ export function RulesFaq() {
     <section id="rules" className="py-[clamp(72px,10vw,128px)]">
       <div className="mx-auto grid w-full max-w-[1080px] grid-cols-1 gap-12 px-6">
         <div>
-          <Reveal>
-            <SectionHeading title="Maximize your chances" />
-          </Reveal>
+          <SectionHeading
+            title="Maximize your chances"
+            sub="Four rules decide how many tickets you hold when a draw runs."
+          />
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {RULES.map((rule, ri) => (
               <Reveal key={rule.title} delay={ri * 0.06}>
@@ -84,9 +85,7 @@ export function RulesFaq() {
         </div>
 
         <div id="faq">
-          <Reveal>
-            <SectionHeading title="Questions, answered" />
-          </Reveal>
+          <SectionHeading title="Questions, answered" />
           <div className="grid grid-cols-1 gap-2">
             {FAQS.map((faq, i) => (
               <Accordion key={i} className="rounded-xl border border-border bg-card">

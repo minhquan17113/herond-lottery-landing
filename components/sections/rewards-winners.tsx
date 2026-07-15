@@ -95,23 +95,18 @@ export function RewardsWinners() {
   return (
     <section id="rewards" className="py-[clamp(72px,10vw,128px)]">
       <div className="mx-auto w-full min-w-0 max-w-[1080px] px-6">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Rewards"
-            title={
-              <>
-                <GradientText className="rounded-lg bg-background px-1">
-                  <CountUp value={10000} prefix="$" className="tabular-nums" />
-                </GradientText>{" "}
-                Up for grabs
-              </>
-            }
-          />
-          <p className="-mt-6 mb-10 max-w-[420px] text-pretty text-[15px] text-muted-foreground">
-            Real prizes every week, plus a Grand Draw built from every ticket you&apos;ve earned all
-            season.
-          </p>
-        </Reveal>
+        <SectionHeading
+          eyebrow="Rewards"
+          title={
+            <>
+              <GradientText className="rounded-lg bg-background px-1">
+                <CountUp value={10000} prefix="$" className="tabular-nums" />
+              </GradientText>{" "}
+              Up for grabs
+            </>
+          }
+          sub="Real prizes every week, plus a Grand Draw built from every ticket you've earned all season."
+        />
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <Reveal>
