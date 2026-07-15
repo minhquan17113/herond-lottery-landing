@@ -168,6 +168,33 @@
     transform: translateY(-12px);
   }
 }
+@keyframes hp-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+/* Hero headline: word-by-word rise once the intro panel settles. Each word
+   sits in an overflow-hidden wrapper; --wi staggers the cascade. */
+.hp-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.hp-word > span {
+  display: inline-block;
+  transform: translateY(115%);
+}
+html.intro-ready .hp-word > span {
+  animation: hp-word-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--wi) * 70ms + 0.12s);
+}
+@keyframes hp-word-up {
+  to {
+    transform: translateY(0);
+  }
+}
 @property --hp-angle {
   syntax: "<angle>";
   initial-value: 0deg;

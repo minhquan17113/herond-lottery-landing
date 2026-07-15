@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsap";
 import { CtaLink } from "@/components/cta-link";
 import { PointIcon } from "@/components/icons";
 import { GradientText } from "@/components/gradient-text";
+import { CountUp } from "@/components/count-up";
 
 export function FinalCta() {
   const rootRef = useRef<HTMLElement>(null);
@@ -72,7 +73,7 @@ export function FinalCta() {
                 Season 1 Grand Draw
               </div>
               <div className="fc-amount mb-1.5 text-[clamp(46px,8.5vw,76px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
-                $10,000
+                <CountUp value={10000} prefix="$" />
               </div>
               <div className="text-[12.5px] font-semibold uppercase tracking-[.12em] text-white/75 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
                 Total prize pool
@@ -134,7 +135,7 @@ export function FinalCta() {
                 Season 1 Grand Draw
               </div>
               <div className="fc-amount mb-1.5 text-[clamp(46px,4.5vw,68px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
-                $10,000
+                <CountUp value={10000} prefix="$" />
               </div>
               <div className="text-[12.5px] font-semibold uppercase tracking-[.12em] text-white/75 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
                 Total prize pool

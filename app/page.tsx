@@ -1,6 +1,7 @@
 import { Nav } from "@/components/sections/nav";
 import { Aurora } from "@/components/aurora";
 import { Hero } from "@/components/sections/hero";
+import { Ticker } from "@/components/ticker";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { RulesFaq } from "@/components/sections/rules-faq";
 import { RewardsWinners } from "@/components/sections/rewards-winners";
@@ -18,6 +19,7 @@ export default function Home() {
       <Nav />
       <main className="relative">
         <Hero />
+        <Ticker />
         <RewardsWinners />
         <HowItWorks />
         <RulesFaq />

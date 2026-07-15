@@ -8,6 +8,20 @@ import { PointIcon } from "@/components/icons";
 import { useCountdown } from "@/lib/countdown";
 import { WEEKS_META, DRAW_TIME } from "@/data/season";
 
+/** Splits a line into word spans that rise in once `html.intro-ready` lands. */
+function Words({ text, from }: { text: string; from: number }) {
+  return (
+    <>
+      {text.split(" ").map((word, i) => (
+        <span key={i} className="hp-word" style={{ "--wi": from + i } as React.CSSProperties}>
+          <span>{word}</span>
+          {i < text.split(" ").length - 1 && " "}
+        </span>
+      ))}
+    </>
+  );
+}
+
 const COUNTDOWN_UNITS = [
   { key: "days", label: "Days" },
   { key: "hours", label: "Hours" },
@@ -128,11 +142,13 @@ export function Hero() {
           </div>
 
           <h1 className="mb-[18px] text-[clamp(38px,4.8vw,62px)] font-bold leading-[1.08] tracking-[-0.03em]">
-            Check in daily.
+            <Words text="Check in daily." from={0} />
             <br />
-            <span className="text-primary">Win real rewards</span>
+            <span className="text-primary">
+              <Words text="Win real rewards" from={3} />
+            </span>
             <br />
-            every week.
+            <Words text="every week." from={6} />
           </h1>
 
           <p className="mb-[26px] max-w-[460px] text-pretty text-lg text-muted-foreground">

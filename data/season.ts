@@ -89,7 +89,7 @@ export const FAQS: { q: string; paras: string[] }[] = [
   {
     q: "Do I need a crypto wallet?",
     paras: [
-      "Not to play — you earn and win with daily check-ins alone. You'll only need a Herond Wallet to receive your rewards if you win.",
+      "Not to play. You earn and win with daily check-ins alone. You'll only need a Herond Wallet to receive your rewards if you win.",
       "Optionally, connect your wallet and make one transaction to earn a +15% bonus on your total Grand Draw tickets.",
     ],
   },

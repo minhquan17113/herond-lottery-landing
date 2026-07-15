@@ -43,7 +43,7 @@ export function HowItWorks() {
       <div className="mx-auto w-full max-w-[1080px] px-6">
         <div className="lg:grid lg:grid-cols-[320px_1fr] lg:items-start lg:gap-14">
           <div>
-            <SectionHeading eyebrow="How it works" title="Three steps to your first ticket" />
+            <SectionHeading title="Three steps to your first ticket" />
 
             {/* Desktop: vertical step list doubles as the section's left rail. */}
             <div className="mt-6 hidden lg:block lg:space-y-1.5">

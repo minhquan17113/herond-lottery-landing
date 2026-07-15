@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { TiltCard } from "@/components/tilt-card";
+import { Reveal } from "@/components/reveal";
+import { CountUp } from "@/components/count-up";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { PointIcon, LinePointIcon } from "@/components/icons";
 import { GradientText } from "@/components/gradient-text";
@@ -85,7 +87,7 @@ export function RewardsWinners() {
       badgeColor: isDrawn ? "#28c968" : "rgba(235,235,245,0.6)",
       cardBorder: "1px solid var(--border)",
       cardShadow: "none",
-      lockedTitle: `Week ${active} — Coming Soon`,
+      lockedTitle: `Week ${active}: Coming Soon`,
       lockedSub: `Winners announced on ${ordinal(meta.day)} ${meta.month} ${meta.year}`,
     };
   }, [active, byWeek, finalData]);
@@ -93,55 +95,64 @@ export function RewardsWinners() {
   return (
     <section id="rewards" className="py-[clamp(72px,10vw,128px)]">
       <div className="mx-auto w-full min-w-0 max-w-[1080px] px-6">
-        <SectionHeading
-          eyebrow="Rewards"
-          title={
-            <>
-              <GradientText className="rounded-lg bg-background px-1">$10,000</GradientText> Up for grabs
-            </>
-          }
-        />
-        <p className="-mt-6 mb-10 max-w-[420px] text-pretty text-[15px] text-muted-foreground">
-          Real prizes every week, plus a Grand Draw built from every ticket you&apos;ve earned all
-          season.
-        </p>
+        <Reveal>
+          <SectionHeading
+            eyebrow="Rewards"
+            title={
+              <>
+                <GradientText className="rounded-lg bg-background px-1">
+                  <CountUp value={10000} prefix="$" className="tabular-nums" />
+                </GradientText>{" "}
+                Up for grabs
+              </>
+            }
+          />
+          <p className="-mt-6 mb-10 max-w-[420px] text-pretty text-[15px] text-muted-foreground">
+            Real prizes every week, plus a Grand Draw built from every ticket you&apos;ve earned all
+            season.
+          </p>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-          <PoolCard
-            badge="WEEKLY POOL"
-            badgeColor="#3373f6"
-            badgeBg="rgba(51,115,246,0.12)"
-            cadence="Every Sunday"
-            amount="Up to $400"
-            winners="30"
-            note="Each weekly draw uses only that week's tickets."
-            prizes={[
-              "$20 (ETH on Base)",
-              "$10 (ETH on Base)",
-              "$5 (ETH on Base)",
-              "Google Play $10",
-              "Starbucks $5",
-            ]}
-          />
-          <PoolCard
-            badge="GRAND DRAW POOL"
-            badgeColor="#ffd60a"
-            badgeBg="rgba(255,195,0,0.12)"
-            cadence="End of Season 1"
-            amount="Up to $8,000"
-            winners="500+"
-            note="Every ticket you've earned all season counts, plus any bonus tickets."
-            prizes={[
-              "$1,500 (ETH on Base)",
-              "$400 (ETH on Base)",
-              "$200 (ETH on Base)",
-              "$10 (ETH on Base)",
-              "Google Play $10",
-              "$5 (ETH on Base)",
-              "Starbucks $5",
-            ]}
-            glow
-          />
+          <Reveal>
+            <PoolCard
+              badge="WEEKLY POOL"
+              badgeColor="#3373f6"
+              badgeBg="rgba(51,115,246,0.12)"
+              cadence="Every Sunday"
+              amountValue={400}
+              winners="30"
+              note="Each weekly draw uses only that week's tickets."
+              prizes={[
+                "$20 (ETH on Base)",
+                "$10 (ETH on Base)",
+                "$5 (ETH on Base)",
+                "Google Play $10",
+                "Starbucks $5",
+              ]}
+            />
+          </Reveal>
+          <Reveal delay={0.12}>
+            <PoolCard
+              badge="GRAND DRAW POOL"
+              badgeColor="#ffd60a"
+              badgeBg="rgba(255,195,0,0.12)"
+              cadence="End of Season 1"
+              amountValue={8000}
+              winners="500+"
+              note="Every ticket you've earned all season counts, plus any bonus tickets."
+              prizes={[
+                "$1,500 (ETH on Base)",
+                "$400 (ETH on Base)",
+                "$200 (ETH on Base)",
+                "$10 (ETH on Base)",
+                "Google Play $10",
+                "$5 (ETH on Base)",
+                "Starbucks $5",
+              ]}
+              glow
+            />
+          </Reveal>
         </div>
 
         <h3 className="mt-12 text-center text-[15px] font-bold text-foreground">Winners</h3>
@@ -224,7 +235,11 @@ export function RewardsWinners() {
               {panel.isDrawn ? (
                 panel.draws.map((draw, i) => (
                   <div key={i} className="border-b border-white/[0.06] py-4 last:border-b-0">
-                    <div className="text-[13px] font-bold text-foreground">{draw.title}</div>
+                    {/* Sheet-authored titles use an em-dash separator; normalize
+                        to a colon so typography stays consistent site-wide. */}
+                    <div className="text-[13px] font-bold text-foreground">
+                      {draw.title.replace(/\s*[—–]\s*/g, ": ")}
+                    </div>
                     <div className="my-0.5 mb-3 text-[11px] text-white/30">{draw.time}</div>
                     <div className="grid grid-cols-1 gap-x-4.5 gap-y-2 sm:grid-cols-2">
                       {draw.winners.map((name, wi) => (
@@ -272,7 +287,7 @@ interface PoolCardProps {
   badgeColor: string;
   badgeBg: string;
   cadence: string;
-  amount: string;
+  amountValue: number;
   winners: string;
   note: string;
   prizes: string[];
@@ -284,7 +299,7 @@ function PoolCard({
   badgeColor,
   badgeBg,
   cadence,
-  amount,
+  amountValue,
   winners,
   note,
   prizes,
@@ -292,11 +307,11 @@ function PoolCard({
 }: PoolCardProps) {
   return (
     <TiltCard
-      className={
+      className={`h-full overflow-hidden ${
         glow
           ? "border-[rgba(255,214,10,0.28)] p-6 hover:border-[rgba(255,214,10,0.45)]"
           : "p-6"
-      }
+      }`}
     >
       <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
         <div
@@ -308,14 +323,22 @@ function PoolCard({
         <div className="text-[13px] font-medium text-muted-foreground">{cadence}</div>
       </div>
       <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
-        <div className="text-[32px] font-bold tracking-[-0.02em] tabular-nums">{amount}</div>
+        <div className="text-[36px] font-bold tracking-[-0.02em] tabular-nums">
+          Up to <CountUp value={amountValue} prefix="$" />
+        </div>
         <div className="text-[13px] text-muted-foreground">
           <b className="text-[15px] text-foreground">{winners}</b> winners{" "}
           {winners === "500+" ? "" : "/ week"}
         </div>
       </div>
       <p className="mb-4 text-pretty text-[13px] leading-snug text-muted-foreground">{note}</p>
-      <div className="mb-3.5 h-px bg-[var(--hp-hairline)]" />
+      {/* Perforated seam with edge notch bites — the same torn-ticket motif as
+          the final CTA, so the pool cards read as ticket stubs. */}
+      <div className="relative -mx-6 mb-3.5">
+        <div className="mx-6 border-t border-dashed border-[var(--hp-hairline)]" />
+        <span className="absolute -left-[7px] top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border border-border bg-background" />
+        <span className="absolute -right-[7px] top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border border-border bg-background" />
+      </div>
       <div className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-[.1em] text-white/30">
         Prize breakdown
       </div>

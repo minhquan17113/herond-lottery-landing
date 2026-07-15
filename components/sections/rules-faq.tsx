@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { PointIcon, LinePointIcon } from "@/components/icons";
 import { TiltCard } from "@/components/tilt-card";
+import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { FAQS } from "@/data/season";
 
@@ -29,7 +30,7 @@ const RULES = [
     body: (
       <>
         Weekly Draw every <span className="font-bold text-foreground">Sunday</span>. Your tickets
-        enter automatically — nothing else to do.
+        enter automatically, nothing else to do.
       </>
     ),
   },
@@ -62,24 +63,30 @@ export function RulesFaq() {
     <section id="rules" className="py-[clamp(72px,10vw,128px)]">
       <div className="mx-auto grid w-full max-w-[1080px] grid-cols-1 gap-12 px-6">
         <div>
-          <SectionHeading eyebrow="Rules" title="Maximize your chances" />
+          <Reveal>
+            <SectionHeading title="Maximize your chances" />
+          </Reveal>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {RULES.map((rule) => (
-              <TiltCard key={rule.title} className="p-5">
-                <div className="mb-2 flex items-center gap-2">
-                  <rule.icon className={`size-4 flex-none ${rule.iconColor}`} />
-                  <h4 className="text-[13.5px] font-semibold">{rule.title}</h4>
-                </div>
-                <p className="text-pretty text-[13px] leading-relaxed text-muted-foreground">
-                  {rule.body}
-                </p>
-              </TiltCard>
+            {RULES.map((rule, ri) => (
+              <Reveal key={rule.title} delay={ri * 0.06}>
+                <TiltCard className="h-full p-5">
+                  <div className="mb-2 flex items-center gap-2">
+                    <rule.icon className={`size-4 flex-none ${rule.iconColor}`} />
+                    <h4 className="text-[13.5px] font-semibold">{rule.title}</h4>
+                  </div>
+                  <p className="text-pretty text-[13px] leading-relaxed text-muted-foreground">
+                    {rule.body}
+                  </p>
+                </TiltCard>
+              </Reveal>
             ))}
           </div>
         </div>
 
         <div id="faq">
-          <SectionHeading eyebrow="FAQ" />
+          <Reveal>
+            <SectionHeading title="Questions, answered" />
+          </Reveal>
           <div className="grid grid-cols-1 gap-2">
             {FAQS.map((faq, i) => (
               <Accordion key={i} className="rounded-xl border border-border bg-card">
