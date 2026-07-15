@@ -5,8 +5,39 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { CtaLink } from "@/components/cta-link";
 import { PointIcon } from "@/components/icons";
-import { GradientText } from "@/components/gradient-text";
 import { CountUp } from "@/components/count-up";
+
+
+/**
+ * Prize-stub surface: near-black ticket paper with the brand aurora sunk into
+ * it as low-luminance depth (blue rising from the bottom edge, a breath of
+ * pink at the top corner, purple in the mid-field) plus film grain. Replaces
+ * the earlier full-saturation gradient wash, which read as candy rather than
+ * a made object.
+ */
+const STUB_BACKGROUND: React.CSSProperties = {
+  background: [
+    "radial-gradient(130% 150% at 10% 120%, rgba(51,115,246,0.38), transparent 58%)",
+    "radial-gradient(90% 110% at 92% -20%, rgba(255,128,151,0.14), transparent 55%)",
+    "radial-gradient(150% 170% at 60% 55%, rgba(102,81,234,0.16), transparent 62%)",
+    "#141419",
+  ].join(", "),
+  // Hairline light catch along the top edge, so the stub reads as material.
+  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07)",
+};
+
+const GRAIN_URL =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
+function StubGrain() {
+  return (
+    <span
+      aria-hidden
+      className="pointer-events-none absolute inset-0 opacity-[0.09] mix-blend-overlay"
+      style={{ backgroundImage: GRAIN_URL }}
+    />
+  );
+}
 
 export function FinalCta() {
   const rootRef = useRef<HTMLElement>(null);
@@ -56,10 +87,10 @@ export function FinalCta() {
       <div className="relative mx-auto w-full max-w-[540px] px-6 lg:max-w-[880px]">
         {/* Stacked layout (below lg). */}
         <div className="lg:hidden">
-          <GradientText
-            as="div"
-            className="block w-full rounded-t-[28px] border border-b-0 border-border bg-card shadow-[0_-20px_50px_-36px_rgba(0,0,0,0.6)]"
+          <div
+            className="relative block w-full overflow-hidden rounded-t-[28px] border border-b-0 border-border shadow-[0_-20px_50px_-36px_rgba(0,0,0,0.6)]"
             style={{
+              ...STUB_BACKGROUND,
               maskImage:
                 "radial-gradient(circle 14px at 0 100%, transparent 14px, black 15px), radial-gradient(circle 14px at 100% 100%, transparent 14px, black 15px)",
               maskComposite: "intersect",
@@ -68,18 +99,19 @@ export function FinalCta() {
               WebkitMaskComposite: "source-in",
             }}
           >
+            <StubGrain />
             <div className="relative z-10 px-8 pb-9 pt-11 sm:px-12">
-              <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+              <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
                 Season 1 Grand Draw
               </div>
-              <div className="fc-amount mb-1.5 text-[clamp(46px,8.5vw,76px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+              <div className="fc-amount mb-1.5 text-[clamp(46px,8.5vw,76px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground">
                 <CountUp value={10000} prefix="$" />
               </div>
-              <div className="text-[12.5px] font-semibold uppercase tracking-[.12em] text-white/75 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+              <div className="text-[12.5px] font-semibold uppercase tracking-[.12em] text-white/50">
                 Total prize pool
               </div>
             </div>
-          </GradientText>
+          </div>
 
           <div className="relative h-6">
             <div className="absolute inset-x-6 top-1/2 border-t border-dashed border-[var(--hp-hairline)]" />
@@ -118,10 +150,10 @@ export function FinalCta() {
 
         {/* Side-by-side layout (lg and up) — same two stubs, torn seam now vertical. */}
         <div className="hidden lg:flex lg:items-stretch">
-          <GradientText
-            as="div"
-            className="flex flex-1 items-center rounded-l-[28px] border border-r-0 border-border bg-card shadow-[-20px_0_50px_-36px_rgba(0,0,0,0.6)]"
+          <div
+            className="relative flex flex-1 items-center overflow-hidden rounded-l-[28px] border border-r-0 border-border shadow-[-20px_0_50px_-36px_rgba(0,0,0,0.6)]"
             style={{
+              ...STUB_BACKGROUND,
               maskImage:
                 "radial-gradient(circle 14px at 100% 0, transparent 14px, black 15px), radial-gradient(circle 14px at 100% 100%, transparent 14px, black 15px)",
               maskComposite: "intersect",
@@ -130,18 +162,19 @@ export function FinalCta() {
               WebkitMaskComposite: "source-in",
             }}
           >
+            <StubGrain />
             <div className="relative z-10 px-14 py-14 text-left xl:px-16">
-              <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+              <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
                 Season 1 Grand Draw
               </div>
-              <div className="fc-amount mb-1.5 text-[clamp(46px,4.5vw,68px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+              <div className="fc-amount mb-1.5 text-[clamp(46px,4.5vw,68px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground">
                 <CountUp value={10000} prefix="$" />
               </div>
-              <div className="text-[12.5px] font-semibold uppercase tracking-[.12em] text-white/75 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+              <div className="text-[12.5px] font-semibold uppercase tracking-[.12em] text-white/50">
                 Total prize pool
               </div>
             </div>
-          </GradientText>
+          </div>
 
           <div className="relative w-6 flex-none">
             <div className="absolute inset-y-6 left-1/2 border-l border-dashed border-[var(--hp-hairline)]" />
