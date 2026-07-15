@@ -7,6 +7,7 @@ import { CtaLink } from "@/components/cta-link";
 import { PointIcon } from "@/components/icons";
 import { CountUp } from "@/components/count-up";
 import { FoilTilt, FoilSheen } from "@/components/foil-tilt";
+import { Iridescent } from "@/components/iridescent";
 
 
 /**
@@ -68,6 +69,7 @@ export function FinalCta() {
   return (
     <section
       ref={rootRef}
+      id="hp-final"
       className="relative flex flex-col items-center justify-center overflow-hidden py-[clamp(80px,12vw,140px)] text-center"
     >
       <div
@@ -100,6 +102,7 @@ export function FinalCta() {
               WebkitMaskComposite: "source-in",
             }}
           >
+            <Iridescent className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.2] mix-blend-screen" />
             <StubGrain />
             <FoilSheen />
             <div className="relative z-10 px-8 pb-9 pt-11 sm:px-12">
@@ -164,6 +167,7 @@ export function FinalCta() {
               WebkitMaskComposite: "source-in",
             }}
           >
+            <Iridescent className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.2] mix-blend-screen" />
             <StubGrain />
             <FoilSheen />
             <div className="relative z-10 px-14 py-14 text-left xl:px-16">
