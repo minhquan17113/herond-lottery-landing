@@ -1,12 +1,20 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { CtaLink } from "@/components/cta-link";
 import { PointIcon } from "@/components/icons";
 import { useCountdown } from "@/lib/countdown";
 import { WEEKS_META, DRAW_TIME } from "@/data/season";
+
+// three.js stays out of the critical bundle; the hero video is the poster
+// until (and unless) the 3D ticket is ready.
+const HeroTicket3D = dynamic(
+  () => import("@/components/hero-ticket-3d").then((m) => m.HeroTicket3D),
+  { ssr: false }
+);
 
 /** Splits a line into word spans that rise in once `html.intro-ready` lands. */
 function Words({ text, from }: { text: string; from: number }) {
@@ -217,6 +225,7 @@ export function Hero() {
                 preload="metadata"
                 className="block h-full w-full rounded-[17px] bg-background object-cover"
               />
+              <HeroTicket3D />
             </div>
           </div>
         </div>
