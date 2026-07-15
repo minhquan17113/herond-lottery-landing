@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsap";
 import { CtaLink } from "@/components/cta-link";
 import { PointIcon } from "@/components/icons";
 import { CountUp } from "@/components/count-up";
+import { FoilTilt, FoilSheen } from "@/components/foil-tilt";
 
 
 /**
@@ -84,7 +85,7 @@ export function FinalCta() {
           not a solid patch painted to guess-match the background. On narrow
           screens the stubs stack top/bottom; from lg up there's room to sit
           them side by side instead, so the seam turns vertical. */}
-      <div className="relative mx-auto w-full max-w-[540px] px-6 lg:max-w-[880px]">
+      <FoilTilt className="relative mx-auto w-full max-w-[540px] px-6 lg:max-w-[880px]">
         {/* Stacked layout (below lg). */}
         <div className="lg:hidden">
           <div
@@ -100,6 +101,7 @@ export function FinalCta() {
             }}
           >
             <StubGrain />
+            <FoilSheen />
             <div className="relative z-10 px-8 pb-9 pt-11 sm:px-12">
               <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
                 Season 1 Grand Draw
@@ -163,6 +165,7 @@ export function FinalCta() {
             }}
           >
             <StubGrain />
+            <FoilSheen />
             <div className="relative z-10 px-14 py-14 text-left xl:px-16">
               <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
                 Season 1 Grand Draw
@@ -210,7 +213,7 @@ export function FinalCta() {
             </div>
           </div>
         </div>
-      </div>
+      </FoilTilt>
     </section>
   );
 }

@@ -35,7 +35,7 @@ export function Ticker() {
     // A <section> so the intro's `main > section:nth-child(n+2)` gating hides
     // it until the hero fly-in completes, like every other below-hero block.
     <section aria-label="Season highlights" className="relative overflow-hidden border-y border-border py-4">
-      <div className="flex w-max animate-[hp-marquee_36s_linear_infinite]">
+      <div className="flex w-max animate-[hp-marquee_36s_linear_infinite] hover:[animation-play-state:paused]">
         {row(false)}
         {row(true)}
       </div>
