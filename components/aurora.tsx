@@ -150,10 +150,18 @@ export function Aurora({ className }: { className?: string }) {
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       if (!reduceMotion) raf = requestAnimationFrame(render);
     };
-    raf = requestAnimationFrame(render);
+
+    // Scrolled out of view, this banner keeps burning a render pass every
+    // frame for nothing — gate the loop on visibility instead.
+    const io = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(raf);
+      if (entry.isIntersecting) raf = requestAnimationFrame(render);
+    });
+    io.observe(canvas);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, []);

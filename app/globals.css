@@ -170,7 +170,10 @@
 }
 @keyframes hp-marquee {
   to {
-    transform: translateX(-50%);
+    /* Content is duplicated 5x in the DOM (see Ticker) so this fifth-turn
+       lands back on an identical copy — keeps the loop seamless even on
+       5K-wide viewports where fewer copies would run out of content. */
+    transform: translateX(-20%);
   }
 }
 /* Hero headline: word-by-word rise once the intro panel settles. Each word

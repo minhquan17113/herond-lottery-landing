@@ -238,9 +238,19 @@ export function FooterAurora({ className }: { className?: string }) {
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       if (!reduceMotion) raf = requestAnimationFrame(render);
     };
-    raf = requestAnimationFrame(render);
 
-    return () => cancelAnimationFrame(raf);
+    // Footer sits below the fold — don't run the shader loop until it's on
+    // screen, and stop again once it scrolls away.
+    const io = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(raf);
+      if (entry.isIntersecting) raf = requestAnimationFrame(render);
+    });
+    io.observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
   }, []);
 
   return <canvas ref={canvasRef} className={className} />;

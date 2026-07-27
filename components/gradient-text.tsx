@@ -10,6 +10,7 @@ interface GradientTextProps
   className?: string;
   children: React.ReactNode;
   as?: React.ElementType;
+  style?: React.CSSProperties;
 }
 
 /**

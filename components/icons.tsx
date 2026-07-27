@@ -29,3 +29,62 @@ export function LinePointIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function AppleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 384 512" fill="currentColor" {...props}>
+      <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+    </svg>
+  );
+}
+
+export function WindowsIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 448 512" fill="currentColor" {...props}>
+      <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z" />
+    </svg>
+  );
+}
+
+export function AndroidIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 576 512" fill="currentColor" {...props}>
+      <path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55" />
+    </svg>
+  );
+}
+
+export function AppStoreIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 448 512" fill="currentColor" {...props}>
+      <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM127 384.5c-5.5 9.6-17.8 12.8-27.3 7.3-9.6-5.5-12.8-17.8-7.3-27.3l14.3-24.7c16.1-4.9 29.3-1.1 39.6 11.4L127 384.5zm138.9-53.9H84c-11 0-20-9-20-20s9-20 20-20h51l65.4-113.2-20.5-35.4c-5.5-9.6-2.2-21.8 7.3-27.3 9.6-5.5 21.8-2.2 27.3 7.3l8.9 15.4 8.9-15.4c5.5-9.6 17.8-12.8 27.3-7.3 9.6 5.5 12.8 17.8 7.3 27.3l-85.8 148.6h62.1c20.2 0 31.5 23.7 22.7 40zm98.1 0h-29l19.6 33.9c5.5 9.6 2.2 21.8-7.3 27.3-9.6 5.5-21.8 2.2-27.3-7.3-32.9-56.9-57.5-99.7-74-128.1-16.7-29-4.8-58 7.1-67.8 13.1 22.7 32.7 56.7 58.9 102h52c11 0 20 9 20 20 0 11.1-9 20-20 20z" />
+    </svg>
+  );
+}
+
+export function MobileDownloadIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 320 512" fill="currentColor" {...props}>
+      <path d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z" />
+    </svg>
+  );
+}
+
+/** Maps a resolved `CtaIcon` key (from `useSmartCta`) to its glyph. */
+export function CtaGlyph({ icon, ...props }: { icon: import("@/lib/download-link").CtaIcon } & SVGProps<SVGSVGElement>) {
+  switch (icon) {
+    case "apple":
+      return <AppleIcon {...props} />;
+    case "windows":
+      return <WindowsIcon {...props} />;
+    case "android":
+      return <AndroidIcon {...props} />;
+    case "appstore":
+      return <AppStoreIcon {...props} />;
+    case "mobile":
+      return <MobileDownloadIcon {...props} />;
+    case "herond":
+    default:
+      return <PointIcon {...props} />;
+  }
+}

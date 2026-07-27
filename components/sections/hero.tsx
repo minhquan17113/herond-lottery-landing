@@ -5,16 +5,11 @@ import dynamic from "next/dynamic";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { CtaLink } from "@/components/cta-link";
-import { PointIcon } from "@/components/icons";
+import { LoopVideo } from "@/components/loop-video";
 import { useCountdown } from "@/lib/countdown";
 import { WEEKS_META, DRAW_TIME } from "@/data/season";
 
-// three.js stays out of the critical bundle; the hero video is the poster
-// until (and unless) the 3D ticket is ready.
-const HeroTicket3D = dynamic(
-  () => import("@/components/hero-ticket-3d").then((m) => m.HeroTicket3D),
-  { ssr: false }
-);
+
 
 /** Splits a line into word spans that rise in once `html.intro-ready` lands. */
 function Words({ text, from }: { text: string; from: number }) {
@@ -194,16 +189,7 @@ export function Hero() {
             </div>
           )}
 
-          <div className="mb-2.5 text-[12px] font-semibold uppercase tracking-[.12em] text-primary/70">
-            Get Your First Ticket
-          </div>
-          <CtaLink>
-            <PointIcon className="size-[18px]" />
-            Install Herond
-          </CtaLink>
-          <div className="mt-4 text-[12.5px] text-white/30">
-            Free to enter · 1-minute install · Tickets never expire
-          </div>
+          <CtaLink />
         </div>
 
         <div className="flex justify-center">
@@ -216,16 +202,10 @@ export function Hero() {
             }}
           >
             <div className="relative aspect-[716/482] overflow-hidden rounded-[17px] bg-background">
-              <video
+              <LoopVideo
                 src="/assets/hero-showcase.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="block h-full w-full rounded-[17px] bg-background object-cover"
+                className="h-full w-full rounded-[17px] bg-background object-cover"
               />
-              <HeroTicket3D />
             </div>
           </div>
         </div>

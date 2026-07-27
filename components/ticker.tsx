@@ -1,6 +1,7 @@
 import { PointIcon } from "@/components/icons";
 
 const ITEMS = [
+  "Free to enter",
   "$10,000 Season 1 pool",
   "30 winners every Sunday",
   "Paid in ETH on Base",
@@ -35,8 +36,14 @@ export function Ticker() {
     // A <section> so the intro's `main > section:nth-child(n+2)` gating hides
     // it until the hero fly-in completes, like every other below-hero block.
     <section aria-label="Season highlights" className="relative overflow-hidden border-y border-border py-4">
+      {/* 5 copies (not 2) so the strip stays seamless up to 5K-wide viewports —
+          fewer copies run out of content once a single row is narrower than
+          the screen, exposing a blank gap each cycle. */}
       <div className="flex w-max animate-[hp-marquee_36s_linear_infinite] hover:[animation-play-state:paused]">
         {row(false)}
+        {row(true)}
+        {row(true)}
+        {row(true)}
         {row(true)}
       </div>
       <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent" />

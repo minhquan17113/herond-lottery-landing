@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { CtaLink } from "@/components/cta-link";
-import { PointIcon } from "@/components/icons";
 import { CountUp } from "@/components/count-up";
 import { FoilTilt, FoilSheen } from "@/components/foil-tilt";
 import { Iridescent } from "@/components/iridescent";
@@ -140,14 +139,8 @@ export function FinalCta() {
               <p className="fc-copy mb-7 text-pretty text-[14.5px] text-muted-foreground">
                 Free to start. One check-in a day. Install Herond and you&apos;re in.
               </p>
-              <div className="fc-cta inline-flex flex-col items-center gap-2.5">
-                <div className="text-[12px] font-semibold uppercase tracking-[.12em] text-primary/70">
-                  Get Your First Ticket
-                </div>
-                <CtaLink className="px-8 py-3.5 text-base">
-                  <PointIcon className="size-[18px]" />
-                  Install Herond
-                </CtaLink>
+              <div className="fc-cta inline-flex flex-col items-center">
+                <CtaLink className="px-8 py-3.5 text-base" />
               </div>
             </div>
           </div>
@@ -205,14 +198,8 @@ export function FinalCta() {
               <p className="fc-copy mb-7 max-w-[360px] text-pretty text-[14.5px] text-muted-foreground">
                 Free to start. One check-in a day. Install Herond and you&apos;re in.
               </p>
-              <div className="fc-cta inline-flex flex-col items-start gap-2.5">
-                <div className="text-[12px] font-semibold uppercase tracking-[.12em] text-primary/70">
-                  Get Your First Ticket
-                </div>
-                <CtaLink className="px-8 py-3.5 text-base">
-                  <PointIcon className="size-[18px]" />
-                  Install Herond
-                </CtaLink>
+              <div className="fc-cta inline-flex flex-col items-start">
+                <CtaLink className="px-8 py-3.5 text-base" />
               </div>
             </div>
           </div>

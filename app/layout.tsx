@@ -3,7 +3,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
 export const metadata: Metadata = {
-  title: "Herond Point — Lottery Ticket",
+  title: "Herond Point · Lottery Ticket",
   description:
     "Check in daily, earn tickets, and win a share of the $10,000 Season 1 lottery pool with Herond Point.",
 };

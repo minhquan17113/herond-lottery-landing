@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { CtaLink } from "@/components/cta-link";
-import { PointIcon } from "@/components/icons";
 import { FooterAurora } from "@/components/footer-aurora";
 
 const STEPS = [
@@ -120,10 +119,7 @@ export function HowItWorks() {
                   {s.body}
                 </p>
                 {i === 0 && (
-                  <CtaLink className="mt-6 self-start px-6 py-3 text-[14px]">
-                    <PointIcon className="size-4" />
-                    Install Herond
-                  </CtaLink>
+                  <CtaLink className="mt-6 self-start px-6 py-3 text-[14px]" />
                 )}
               </div>
             ))}
@@ -157,10 +153,7 @@ export function HowItWorks() {
                   className={`mt-5 flex justify-center ${active === 0 ? "" : "invisible"}`}
                   aria-hidden={active !== 0}
                 >
-                  <CtaLink className="px-6 py-3 text-[14px]" tabIndex={active === 0 ? 0 : -1}>
-                    <PointIcon className="size-4" />
-                    Install Herond
-                  </CtaLink>
+                  <CtaLink className="px-6 py-3 text-[14px]" tabIndex={active === 0 ? 0 : -1} />
                 </div>
               </div>
             </div>

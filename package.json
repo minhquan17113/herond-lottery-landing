@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run build:framer",
+    "build": "next build && npm run build:standalone",
+    "build:standalone": "node scripts/build-standalone-html.mjs",
     "start": "next start",
-    "lint": "eslint",
-    "build:framer": "esbuild lib/framer-entry.tsx --bundle --outfile=framer-landing-page.tsx --platform=browser --format=esm --external:react --external:react-dom --external:framer --external:gsap --external:@gsap/react --external:lenis --external:framer-motion --alias:motion/react=framer-motion --jsx=transform --tsconfig-raw='{\"compilerOptions\":{\"jsx\":\"transform\",\"paths\":{\"@/*\":[\"./*\"]}}}' --alias:next/link=./lib/framer-mocks.tsx --alias:next/image=./lib/framer-mocks.tsx && node scripts/post-build-framer.js"
+    "lint": "eslint"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
