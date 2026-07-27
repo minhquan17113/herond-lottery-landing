@@ -54,6 +54,7 @@ export function Nav() {
           onClick={cta.onClick}
           title={cta.title}
           aria-label={cta.title}
+          data-herond-action={cta["data-herond-action"]}
           className="ml-1 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-3.5 py-2 text-[12px] font-semibold text-white no-underline transition-colors hover:bg-[#4680ff] hover:text-white sm:ml-2 sm:px-5 sm:py-2.5 sm:text-[13px]"
         >
           <CtaGlyph icon={cta.icon} className="size-3.5" />
