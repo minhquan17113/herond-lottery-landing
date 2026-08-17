@@ -37,6 +37,22 @@ export const WEEKS_META: WeekMeta[] = [
   { week: 6, day: 2, month: "August", year: 2026 },
   { week: 7, day: 9, month: "August", year: 2026 },
   { week: 8, day: 16, month: "August", year: 2026 },
+  { week: 9, day: 23, month: "August", year: 2026 },
+  { week: 10, day: 30, month: "August", year: 2026 },
+  { week: 11, day: 6, month: "September", year: 2026 },
+  { week: 12, day: 13, month: "September", year: 2026 },
+  { week: 13, day: 20, month: "September", year: 2026 },
+  { week: 14, day: 27, month: "September", year: 2026 },
+  { week: 15, day: 4, month: "October", year: 2026 },
+  { week: 16, day: 11, month: "October", year: 2026 },
+  { week: 17, day: 18, month: "October", year: 2026 },
+  { week: 18, day: 25, month: "October", year: 2026 },
+  { week: 19, day: 1, month: "November", year: 2026 },
+  { week: 20, day: 8, month: "November", year: 2026 },
+  { week: 21, day: 15, month: "November", year: 2026 },
+  { week: 22, day: 22, month: "November", year: 2026 },
+  { week: 23, day: 29, month: "November", year: 2026 },
+  { week: 24, day: 6, month: "December", year: 2026 },
 ];
 
 /** Seed data shown before the live sheet loads (and if the sheet is unreachable). */
